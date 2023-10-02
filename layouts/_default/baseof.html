@@ -7,10 +7,12 @@
     {{ end }}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{ with resources.Get "styles/main.scss" }}
-        {{ $style := . | toCSS | minify | fingerprint }}
-        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
-    {{ end }}
+    {{ $main_style := resources.Get "styles/main.scss" }}
+    {{ $theme_style := resources.Get "styles/theme.scss" }}
+    {{ $site_theme_style := resources.Get "styles/site-theme.scss" }}
+    {{ $style_bundle := slice $theme_style $site_theme_style $main_style | resources.Concat "css/bundle.css" }}
+    {{ $style := $style_bundle | toCSS | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
     <script>
         let domReady = (cb) => {
             document.readyState === 'interactive' || document.readyState === 'complete'
@@ -23,12 +25,7 @@
             document.body.style.visibility = 'visible';
         });
     </script>
-    <script
-            src="https://code.jquery.com/jquery-3.6.3.min.js"
-            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
-            crossorigin="anonymous"
-    >
-    </script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/ccc02a44a7.js" crossorigin="anonymous"></script>
 </head>
 <body style="visibility: hidden;">
