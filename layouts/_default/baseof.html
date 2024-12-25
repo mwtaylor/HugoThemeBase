@@ -7,10 +7,6 @@
     {{ end }}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    {{ with resources.Get "styles/main.scss" }}
-        {{ $style := . | toCSS | minify | fingerprint }}
-        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}">
-    {{ end }}
     <script>
         let domReady = (cb) => {
             document.readyState === 'interactive' || document.readyState === 'complete'
@@ -24,8 +20,8 @@
         });
     </script>
     <script
-            src="https://code.jquery.com/jquery-3.6.3.min.js"
-            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+            src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
             crossorigin="anonymous"
     >
     </script>
@@ -33,9 +29,5 @@
 </head>
 <body style="visibility: hidden;">
     {{ block "body" . }}{{ end }}
-    {{ with resources.Get "scripts/main.js" }}
-        {{ $js := . | js.Build | minify | fingerprint }}
-        <script type="module" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
-    {{ end }}
 </body>
 </html>
