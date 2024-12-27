@@ -26,6 +26,12 @@
     >
     </script>
     <script src="https://kit.fontawesome.com/ccc02a44a7.js" crossorigin="anonymous"></script>
+
+    {{ $opts := dict "transpiler" "dartsass" "targetPath" "css/main.css" }}
+    {{ with resources.Get "sass/main.scss" | toCSS $opts | minify | fingerprint }}
+        <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{ end }}
+
 </head>
 <body style="visibility: hidden;">
     {{ block "body" . }}{{ end }}
