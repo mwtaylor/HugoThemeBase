@@ -1,0 +1,7 @@
+{{ with site.Params.social_accounts.github }}
+    {{ partial "social/base" (dict
+        "logo" "fa-github"
+        "link" (printf "https://github.com/%s" .username)
+        "rel_me" false
+    ) }}
+{{ end }}

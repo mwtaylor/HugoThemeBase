@@ -1,0 +1,4 @@
+<a {{ if .rel_me }}rel="me"{{ end }} href="{{ .link }}">
+    <i class="fa-brands {{ .logo }} fa-2x"></i>
+    {{ with .text }}{{ . }}{{ end }}
+</a>

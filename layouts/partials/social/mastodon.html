@@ -1,0 +1,7 @@
+{{ with site.Params.social_accounts.mastodon }}
+    {{ partial "social/base" (dict
+        "logo" "fa-mastodon"
+        "link" (printf "https://%s/@%s" .server .username)
+        "rel_me" true
+    ) }}
+{{ end }}
