@@ -1,4 +1,4 @@
-<a {{ if .rel_me }}rel="me"{{ end }} href="{{ .link }}">
+<a {{ if .rel_me }}rel="me"{{ end }} href="{{ .link }}" target="_blank" rel="noopener noreferrer">
     <i class="fa-brands {{ .logo }} fa-2x"></i>
     {{ with .text }}{{ . }}{{ end }}
 </a>
