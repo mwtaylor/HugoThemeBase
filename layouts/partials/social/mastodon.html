@@ -2,6 +2,7 @@
     {{ partial "social/base" (dict
         "logo" "fa-mastodon"
         "link" (printf "https://%s/@%s" .server .username)
-        "rel_me" true
+        "relMe" true
+        "ariaLabel" (printf "Mastodon profile for %s" .username)
     ) }}
 {{ end }}
